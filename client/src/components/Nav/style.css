@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+/* body{
+    background: #2f363e;
+} */
+
+
+.nav-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #2f363e;
+    border-bottom: 2px solid #1f83f2;
+}
+
+.nav-body .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.nav-body .logo h1{
+    font-weight: 700;
+    font-size: 1.5em;
+    
+}
+
+.nav-body .logo h1 a{
+    color: #fff;;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.nav-body .logo h1 a:hover{
+    color: #1f83f2;
+}
+
+
+.container-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+    background: #2f363e;
+    padding: 20px;
+}
+
+.container-nav h3 {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+.container-nav .list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    
+    cursor: pointer;
+
+}
+
+.container-nav .list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45px;
+    height: 45px;
+    background: #1f83f2;
+    border-radius: 22.5px;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.25),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+}
+
+.container-nav .list:hover::before {
+    width: 100%;
+    padding: 0 5px;
+    
+}
+
+.container-nav .list .rank {
+    position: relative;
+    min-width: 45px;
+    height: 45px;
+    /* background: #fff; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    
+}
+ 
+
+.container-nav .list .rank::before {
+    content: '';
+    position: absolute;
+    /* top: 6px; */
+    width: 30px;
+    height: 30px;
+    background: #2f363e;
+    border-radius: 30px;
+    transform: scale(0);
+    transition: 0.5s;
+}
+
+.container-nav .list:hover .rank::before {
+    transform: scale(1);
+}
+
+
+.container-nav .list .rank span {
+    position: relative;
+    font-weight: 600;
+    font-size: 1em;
+    color: #fff;
+    transition: .5s;
+}
+
+.container-nav .list .creator {
+    position: relative;
+    line-height: 1.15em;
+}
+
+.container-nav .list .creator h4 {
+    font-weight: 600;
+    color: #bcbcc0;
+    transition: .5s;
+}
+
+.container-nav .list:hover .creator h4 {
+    color: #fff;
+}
