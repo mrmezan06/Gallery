@@ -5,16 +5,21 @@ import RegisterPage from './page/Register/RegisterPage';
 import LoginPage from './page/Login/LoginPage';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
+import Layout from './components/Layout';
 
 const App = () => {
   return (
-    <Routes>
-      <Route index element={<HomePage />} />
-      <Route path="register" element={<RegisterPage />} />
-      <Route path="login" element={<LoginPage />} />
-      <Route path="nav" element={<Nav />} />
-      <Route path="footer" element={<Footer />} />
-    </Routes>
+    <>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
+        </Route>
+      </Routes>
+      <Footer />
+    </>
   );
 };
 

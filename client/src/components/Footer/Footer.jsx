@@ -5,7 +5,7 @@ const Footer = () => {
     <>
       <div className="main-footer">
         <div className="container-footer">
-          <div className="row">
+          {/* <div className="row">
             <div className="col">
               <h2>Address</h2>
               <div className="list-unstyled">
@@ -23,11 +23,11 @@ const Footer = () => {
                 <li>Gallery 3</li>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="row">
             <div className="col-footer">
-              <div className="text-copy">Terms Of Service | Privacy</div>
+              <div className="text-copy">Terms And Conditions | Privacy</div>
               <p className="copyright">
                 &copy;{new Date().getFullYear() - 1}-{new Date().getFullYear()}
                 {' | '}

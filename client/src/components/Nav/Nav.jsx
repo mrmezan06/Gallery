@@ -1,7 +1,23 @@
 import './style.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import MenuList from './MenuList';
 
 const Nav = () => {
+  const [menu, setMenu] = useState(false);
+
+  const handleMenu = () => {
+    setMenu(!menu);
+  };
+
+  // width > 680px => menu = false
+
+  // useEffect(() => {
+  //   if (window.innerWidth > 680) {
+  //     setMenu(false);
+  //   }
+  // }, []);
+
   return (
     <div className="nav-body">
       <div className="container-logo">
@@ -48,6 +64,15 @@ const Nav = () => {
             </div>
           </div>
         </div>
+        {/* Menu Icon */}
+
+        {/* Todo: onClick menu popup a Menu List */}
+
+        <h4 className={`menu`} onClick={handleMenu}>
+          <i className="fa fa-bars"></i>
+        </h4>
+
+        {menu && <MenuList />}
       </div>
     </div>
   );
