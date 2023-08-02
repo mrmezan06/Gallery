@@ -10,14 +10,6 @@ const Nav = () => {
     setMenu(!menu);
   };
 
-  // width > 680px => menu = false
-
-  // useEffect(() => {
-  //   if (window.innerWidth > 680) {
-  //     setMenu(false);
-  //   }
-  // }, []);
-
   return (
     <div className="nav-body">
       <div className="container-logo">
@@ -31,38 +23,54 @@ const Nav = () => {
       </div>
       <div className="item">
         <div className="container-nav">
-          <div className="list">
-            <div className="rank">
-              <span>➡️</span>
+          <Link to="/gallery" style={{ textDecoration: 'none' }}>
+            <div className="list">
+              <div className="rank">
+                <span>
+                  <i class="fa fa-picture-o" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div className="creator">
+                <h4>Gallery</h4>
+              </div>
             </div>
-            <div className="creator">
-              <h4>Gallery</h4>
+          </Link>
+          <Link to="/about" style={{ textDecoration: 'none' }}>
+            <div className="list">
+              <div className="rank">
+                <span>
+                  <i class="fa fa-users" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div className="creator">
+                <h4>About</h4>
+              </div>
             </div>
-          </div>
-          <div className="list">
-            <div className="rank">
-              <span>➡️</span>
+          </Link>
+          <Link to="/contact" style={{ textDecoration: 'none' }}>
+            <div className="list">
+              <div className="rank">
+                <span>
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div className="creator">
+                <h4>Contact Us</h4>
+              </div>
             </div>
-            <div className="creator">
-              <h4>About</h4>
+          </Link>
+          <Link to="/login" style={{ textDecoration: 'none' }}>
+            <div className="list">
+              <div className="rank">
+                <span>
+                  <i class="fa fa-sign-in" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div className="creator">
+                <h4>Login</h4>
+              </div>
             </div>
-          </div>
-          <div className="list">
-            <div className="rank">
-              <span>➡️</span>
-            </div>
-            <div className="creator">
-              <h4>Contact Us</h4>
-            </div>
-          </div>
-          <div className="list">
-            <div className="rank">
-              <span>➡️</span>
-            </div>
-            <div className="creator">
-              <h4>Login</h4>
-            </div>
-          </div>
+          </Link>
         </div>
         {/* Menu Icon */}
 

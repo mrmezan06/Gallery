@@ -1,15 +1,20 @@
 import './style.css';
-import { useNavigate } from 'react-router-dom';
 
-const HomePage = () => {
-  const navigate = useNavigate();
+const GalleryPage = () => {
   return (
     <>
       <section className="g-body">
         <div className="container">
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                {/* show views on top right above the picture */}
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 6M
+                </p>
                 <img
                   src="./team/team1.jpg"
                   alt="Team 1"
@@ -21,14 +26,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>24 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team2.jpg"
                   alt="Team 2"
@@ -40,14 +51,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>19 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team3.jpg"
                   alt="Team 3"
@@ -59,14 +76,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>28 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team1.jpg"
                   alt="Team 1"
@@ -78,14 +101,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>24 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team2.jpg"
                   alt="Team 2"
@@ -97,14 +126,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>19 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team3.jpg"
                   alt="Team 3"
@@ -116,14 +151,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>28 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team1.jpg"
                   alt="Team 1"
@@ -135,14 +176,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>24 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team2.jpg"
                   alt="Team 2"
@@ -154,14 +201,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>19 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team3.jpg"
                   alt="Team 3"
@@ -173,14 +226,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>28 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team1.jpg"
                   alt="Team 1"
@@ -192,14 +251,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>24 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team2.jpg"
                   alt="Team 2"
@@ -211,14 +276,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>19 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team3.jpg"
                   alt="Team 3"
@@ -230,14 +301,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>28 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team1.jpg"
                   alt="Team 1"
@@ -249,14 +326,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>24 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team2.jpg"
                   alt="Team 2"
@@ -268,14 +351,20 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>19 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
           </div>
-          <div className="card-g" onClick={() => navigate('/gallery')}>
+          <div className="card-g">
             <div className="content">
               <div className="imgbx">
+                <p className="views">
+                  <i class="fa fa-eye" aria-hidden="true"></i> 24M
+                </p>
+                <p className="loves">
+                  <i class="fa fa-heart" aria-hidden="true"></i> 12M
+                </p>
                 <img
                   src="./team/team3.jpg"
                   alt="Team 3"
@@ -287,7 +376,7 @@ const HomePage = () => {
                 <h3>
                   Maximalius M.
                   <br />
-                  <span>28 Years Old</span>
+                  <span>31 Aug 2023</span>
                 </h3>
               </div>
             </div>
@@ -298,4 +387,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default GalleryPage;

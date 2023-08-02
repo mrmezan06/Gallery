@@ -1,0 +1,133 @@
+.g-body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background: #2f363e;
+    min-height: 82vh;
+    margin: 10px 0;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container .card-g {
+    position: relative;
+    width: 300px;
+    height: 450px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+.container .card-g .content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+.container .card-g:hover .content
+{
+    opacity: 1;
+}
+
+.container .card-g .content .imgbx {
+    position: relative;
+    width: 290px;
+    height: 360px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* show views number on top right corner above the image */
+
+.container .card-g .content .imgbx .views{
+    position: fixed;
+    top: 0;
+    right: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 2;
+    padding: 20px 15px;
+}
+.container .card-g .content .imgbx .views i{
+    color: #2f363e;
+    font-size: 16px;
+}
+
+
+.container .card-g .content .imgbx .loves{
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 2;
+    padding: 20px 15px;
+}
+
+.container .card-g .content .imgbx .loves i {
+    color: red;
+    font-size: 16px;
+}
+
+.container .card-g .content .imgbx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container .card-g .content .imgbx img:hover{
+    transform: scale(1.2);
+    transition: 0.5s;
+}
+
+.container .card-g .content .contentbx h3 {
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0 10px;
+    line-height: 1.1em;
+}
+
+.container .card-g .content .contentbx h3 span {
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: initial;
+}
+
+
+
+
+/* width 320 then apply media query */
+
+@media (max-width: 320px) {
+    .container .card-g {
+        width: 280px;
+        height: 380px;
+    }
+}
