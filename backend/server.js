@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 // ROUTES
 const authRoutes = require('./routes/authRoutes');
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === 'Development') {
 }
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 
 app.get('/', (req, res) => {
