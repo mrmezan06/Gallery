@@ -91,10 +91,12 @@ const loginUser = asyncHandler(async (req, res) => {
 
     res.status(200).json({
       success: true,
+      id: existingUser._id,
       name: existingUser.name,
       username: existingUser.username,
       provider: existingUser.provider,
       avatar: existingUser.avatar,
+      roles: existingUser.roles,
       accessToken,
     });
   } else {
