@@ -75,9 +75,8 @@ const registerUser = asyncHandler(async (req, res) => {
       './templates/accountVerification.handlebars'
     );
 
-    res.json({
-      success: true,
-      message: `A new user ${registeredUser.name} has been registered! A Verification email has been sent to your account. Please verify within 15 minutes`,
+    res.status(201).json({
+      _id: registeredUser._id,
     });
   }
 });

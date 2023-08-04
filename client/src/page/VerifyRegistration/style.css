@@ -1,15 +1,15 @@
-.register-body {
+.verify-body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 82vh;
     background: #23242a;
 }
 
-.boxS{
+.boxV{
     position: relative;
     width: 380px;
-    height: 720px;
+    height: 360px;
     background: #1c1c1c;
     border-radius: 8px;
     /* Animation Parts */
@@ -18,7 +18,7 @@
 }
 
 /* Box outside Animation */
-.boxS:before{
+.boxV:before{
     content: '';
     position: absolute;
     top: -50%;
@@ -32,7 +32,7 @@
     transform-origin: bottom right;
     animation: animate 6s linear infinite;
 }
-.boxS:after{
+.boxV:after{
     content: '';
     position: absolute;
     top: -50%;
@@ -98,7 +98,7 @@
 /* Box Outside Animation END */
 
 
-.boxS form{
+.boxV form{
     position: absolute;
     inset: 4px;
     background: #222;
@@ -109,20 +109,20 @@
     flex-direction: column;
 }
 
-.boxS form h2{
+.boxV form h2{
     color: #fff;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-align: center;
 }
 
-.boxS form .inputBoxS{
+.boxV form .inputBoxS{
     position: relative;
     width: 300px;
     margin-top: 35px;
 }
 
-.boxS form .inputBoxS input{
+.boxV form .inputBoxS input{
     position: relative;
     width: 100%;
     padding: 20px 10px 10px;
@@ -140,7 +140,7 @@
 /* select previous data then input will be same as before */
 
 
-.boxS form .inputBoxS span{
+.boxV form .inputBoxS span{
     position: absolute;
     left: 0;
     padding: 20px 0px 10px;
@@ -151,14 +151,14 @@
     letter-spacing: 0.05em;
 }
 
-.boxS form .inputBoxS input:valid ~ span,
-.boxS form .inputBoxS input:focus ~ span{
+.boxV form .inputBoxS input:valid ~ span,
+.boxV form .inputBoxS input:focus ~ span{
     color: #fff;
     font-size: 0.75em;
     transform: translateY(-34px);
 }
 
-.boxS form .inputBoxS i {
+.boxV form .inputBoxS i {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -171,30 +171,30 @@
     pointer-events: none;
 }
 
-.boxS form .inputBoxS input:valid ~ i,
-.boxS form .inputBoxS input:focus ~ i{
+.boxV form .inputBoxS input:valid ~ i,
+.boxV form .inputBoxS input:focus ~ i{
     height: 44px;
 }
 
-.boxS form .linksS{
+.boxV form .linksS{
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-.boxS form .linksS a{
+.boxV form .linksS a{
     margin: 10px 0;
     font-size: 0.75em;
     color: #8f8f8f;
     text-decoration: none;
 }
 
-.boxS form .linksS a:hover,
-.boxS form .linksS a:nth-child(2){
+.boxV form .linksS a:hover,
+.boxV form .linksS a:nth-child(2){
     color: #fff;
 }
 
-.boxS form input[type="submit"]{
+.boxV form input[type="submit"]{
     border: none;
     outline: none;
     padding: 9px 25px;
@@ -206,6 +206,6 @@
     margin-top: 20px;
 }
 
-.boxS form input[type="submit"]:active{
+.boxV form input[type="submit"]:active{
     opacity: 0.8;
 }

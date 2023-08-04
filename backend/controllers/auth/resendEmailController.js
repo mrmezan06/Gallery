@@ -47,6 +47,7 @@ const resendEmailToken = asyncHandler(async (req, res) => {
   );
   res.status(200).json({
     success: true,
+    _id: user._id,
     message: `A verification email has been sent to ${email}.
        It will expire in 15 minutes. Please check your inbox
         and click on the link provided to your email address.Enter the verification code to verify your email address.`,

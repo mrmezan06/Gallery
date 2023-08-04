@@ -29,7 +29,12 @@ if (process.env.NODE_ENV === 'Development') {
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Welcome to the Gallery API' });

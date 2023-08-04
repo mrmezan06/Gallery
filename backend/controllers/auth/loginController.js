@@ -3,19 +3,19 @@ const User = require('../../models/userModel');
 const jwt = require('jsonwebtoken');
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
-  if (!email || !password) {
+  if (!username || !password) {
     return res.status(400).json({
-      message: 'An email and password are required',
+      message: 'An username and password are required',
     });
   }
 
-  const existingUser = await User.findOne({ email }).select('+password');
+  const existingUser = await User.findOne({ username }).select('+password');
 
   if (!existingUser || !(await existingUser.comparePassword(password))) {
     return res.status(401).json({
-      message: 'Incorrect email or password',
+      message: 'Incorrect username or password',
     });
   }
 
@@ -92,13 +92,17 @@ const loginUser = asyncHandler(async (req, res) => {
 
     res.status(200).json({
       success: true,
-      id: existingUser._id,
-      name: existingUser.name,
-      username: existingUser.username,
-      provider: existingUser.provider,
-      avatar: existingUser.avatar,
-      roles: existingUser.roles,
-      accessToken,
+      user: {
+        id: existingUser._id,
+        name: existingUser.name,
+        username: existingUser.username,
+        email: existingUser.email,
+        provider: existingUser.provider,
+        avatar: existingUser.avatar,
+        roles: existingUser.roles,
+        accessToken,
+      },
+      message: 'Logged in successfully',
     });
   } else {
     return res.status(401).json({
