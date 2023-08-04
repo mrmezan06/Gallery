@@ -34,15 +34,6 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 
   if (existingUser && (await existingUser.comparePassword(password))) {
-    const accessToken = jwt.sign(
-      {
-        id: existingUser._id,
-        roles: existingUser.roles,
-      },
-      process.env.JWT_ACCESS_SECRET_KEY,
-      { expiresIn: '1d' }
-    );
-
     const newRefreshToken = jwt.sign(
       {
         id: existingUser._id,
@@ -88,6 +79,16 @@ const loginUser = asyncHandler(async (req, res) => {
     };
 
     res.cookie('jwt', newRefreshToken, options);
+
+    const accessToken = jwt.sign(
+      {
+        id: existingUser._id,
+        roles: existingUser.roles,
+        refreshToken: newRefreshToken,
+      },
+      process.env.JWT_ACCESS_SECRET_KEY,
+      { expiresIn: '1d' }
+    );
 
     res.status(200).json({
       success: true,

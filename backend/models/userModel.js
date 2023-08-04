@@ -63,6 +63,9 @@ const userSchema = new mongoose.Schema(
     googleID: String,
     avatar: String,
     passwordChangedAt: Date,
+    uploadedFiles: {
+      type: [String],
+    },
     roles: {
       type: [String],
       default: [USER],

@@ -17,7 +17,11 @@ const connectionToDB = async () => {
 
     const connect = await mongoose.connect(MONGO_URI, connectionParams);
     console.log(
-      `${colors.blue.bold(`MongoDB Connected: ${connect.connection.host}`)}`
+      `${colors.white.bold(
+        `${colors.green.bold('✔')} 🔥 MongoDB Connected: ${colors.red.bold(
+          connect.connection.host
+        )}`
+      )}`
     );
   } catch (error) {
     console.error(`${colors.red.bold(`Error: ${error.message}`)}`);
