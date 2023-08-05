@@ -4,7 +4,7 @@ export const categoriesApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllCategory: builder.query({
       query: () => ({
-        url: `/user/all`,
+        url: `/category/all`,
         validateStatus: (response, result) => {
           return response.status === 200 && !result.isError;
         },
@@ -13,45 +13,61 @@ export const categoriesApiSlice = baseApiSlice.injectEndpoints({
         result
           ? [
               ...result.users.map(({ id }) => ({
-                type: 'User',
+                type: 'Category',
                 id,
               })),
-              { type: 'User', id: 'LIST' },
+              { type: 'Category', id: 'LIST' },
             ]
-          : [{ type: 'User', id: 'LIST' }],
+          : [{ type: 'Category', id: 'LIST' }],
     }),
-    getUserProfile: builder.query({
-      query: () => `/user/profile`,
-      providesTags: [{ type: 'User', id: 'SINGLE_USER' }],
-    }),
-    updateUserProfile: builder.mutation({
-      query: (profileData) => ({
-        url: `/user/profile`,
-        method: 'PATCH',
-        body: profileData,
-      }),
-      invalidatesTags: [{ type: 'User', id: 'SINGLE_USER' }],
-    }),
-    deleteMyAccount: builder.mutation({
+    getAllCategoryByItsUser: builder.query({
       query: () => ({
-        url: `/user/profile`,
+        url: `/category/user-all`,
+        validateStatus: (response, result) => {
+          return response.status === 200 && !result.isError;
+        },
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.users.map(({ id }) => ({
+                type: 'Category',
+                id,
+              })),
+              { type: 'Category', id: 'LIST' },
+            ]
+          : [{ type: 'Category', id: 'LIST' }],
+    }),
+
+    deleteByAdmin: builder.mutation({
+      query: (id) => ({
+        url: `/category/deleteByAdmin/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: [{ type: 'User', id: 'LIST' }],
+      invalidatesTags: [{ type: 'Category', id: 'LIST' }],
     }),
-    deleteUser: builder.mutation({
+    deleteByUser: builder.mutation({
       query: (id) => ({
-        url: `/user/${id}`,
+        url: `/category/delete/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: [{ type: 'User', id: 'LIST' }],
+      invalidatesTags: [{ type: 'Category', id: 'LIST' }],
     }),
-    deactivateUser: builder.mutation({
-      query: (id) => ({
-        url: `/user/${id}/deactivate`,
-        method: 'PATCH',
+    createCategory: builder.mutation({
+      query: (catData) => ({
+        url: `/category/create`,
+        method: 'POST',
+        body: catData,
       }),
-      invalidatesTags: [{ type: 'User', id: 'LIST' }],
+      invalidatesTags: [{ type: 'Category', id: 'LIST' }],
     }),
   }),
 });
+
+export const {
+  useGetAllCategoryQuery,
+  useGetAllCategoryByItsUserQuery,
+  useDeleteByAdminMutation,
+  useDeleteByUserMutation,
+  useCreateCategoryMutation,
+} = categoriesApiSlice;
