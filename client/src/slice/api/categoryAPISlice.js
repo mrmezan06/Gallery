@@ -12,7 +12,7 @@ export const categoriesApiSlice = baseApiSlice.injectEndpoints({
       providesTags: (result) =>
         result
           ? [
-              ...result.users.map(({ id }) => ({
+              ...result.categories.map(({ id }) => ({
                 type: 'Category',
                 id,
               })),
@@ -30,7 +30,7 @@ export const categoriesApiSlice = baseApiSlice.injectEndpoints({
       providesTags: (result) =>
         result
           ? [
-              ...result.users.map(({ id }) => ({
+              ...result.categories.map(({ id }) => ({
                 type: 'Category',
                 id,
               })),
