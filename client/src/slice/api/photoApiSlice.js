@@ -38,7 +38,13 @@ export const photosApiSlice = baseApiSlice.injectEndpoints({
             ]
           : [{ type: 'Photos', id: 'LIST' }],
     }),
-
+    getAllPhotosByItsCategory: builder.mutation({
+      query: (id) => ({
+        url: `/photo/get/${id}`,
+        method: 'GET',
+      }),
+      invalidatesTags: [{ type: 'Photos', id: 'LIST' }],
+    }),
     deleteByAdmin: builder.mutation({
       query: (id) => ({
         url: `/photo/deleteByAdmin/${id}`,
@@ -67,6 +73,7 @@ export const photosApiSlice = baseApiSlice.injectEndpoints({
 export const {
   useGetAllPhotosQuery,
   useGetAllPhotosByItsUserQuery,
+  useGetAllPhotosByItsCategoryMutation,
   useDeleteByAdminMutation,
   useDeleteByUserMutation,
   useCreatePhotoMutation,

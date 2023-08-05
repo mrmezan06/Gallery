@@ -60,7 +60,7 @@ const Nav = () => {
       </div>
       <div className="item">
         <div className="container-nav">
-          <Link to="/gallery" style={{ textDecoration: 'none' }}>
+          <Link to="/photos" style={{ textDecoration: 'none' }}>
             <div className="list">
               <div className="rank">
                 <span>

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner';
 
 import { useGetAllCategoryQuery } from '../../slice/api/categoryApiSlice';
+import { useEffect } from 'react';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -12,9 +13,11 @@ const HomePage = () => {
     pollingInterval: 60000 * 5,
   });
 
-  // console.log(data);
-  // console.log(isError);
-  // console.log(isLoading);
+  useEffect(() => {
+    if (isError) {
+      toast.error('Something went wrong! Please try again.');
+    }
+  }, [isError]);
 
   return (
     <>
@@ -26,7 +29,7 @@ const HomePage = () => {
             data?.categories?.map((category) => (
               <div
                 className="card-g"
-                onClick={() => navigate(`/gallery/${category._id}`)}
+                onClick={() => navigate(`/gallery?id=${category._id}`)}
                 key={`${category._id}`}
               >
                 <div className="content">

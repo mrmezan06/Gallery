@@ -1,26 +1,19 @@
 import './style.css';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner';
-import { useGetAllPhotosByItsCategoryMutation } from '../../slice/api/photoApiSlice';
+import { useGetAllPhotosQuery } from '../../slice/api/photoApiSlice';
 import { useEffect } from 'react';
 
-import { useLocation } from 'react-router-dom';
+const GalleryPhotosPage = () => {
+  const { data, isError, isLoading } = useGetAllPhotosQuery('AllPhotos', {
+    pollingInterval: 60000 * 5,
+  });
 
-const GalleryPage = () => {
-  const [getAllPhotosByItsCategory, { data, isError, isLoading }] =
-    useGetAllPhotosByItsCategoryMutation();
-
-  const location = useLocation();
-  let id = location.search.split('=')[1];
-  // if (id === undefined) {
-  //   id = '';
-  // }
   useEffect(() => {
-    getAllPhotosByItsCategory(id);
     if (isError) {
       toast.error('Something went wrong! Please try again.');
     }
-  }, [isError, id, getAllPhotosByItsCategory]);
+  }, [isError]);
 
   return (
     <>
@@ -62,4 +55,4 @@ const GalleryPage = () => {
   );
 };
 
-export default GalleryPage;
+export default GalleryPhotosPage;

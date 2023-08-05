@@ -45,7 +45,7 @@ const MenuList = () => {
   return (
     <>
       <div class="menu-container">
-        <Link to="/gallery" style={{ textDecoration: 'none' }}>
+        <Link to="/photos" style={{ textDecoration: 'none' }}>
           <div class="list">
             <div class="rank">
               <span>

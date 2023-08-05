@@ -210,7 +210,9 @@ const Dashboard = () => {
                               fit: 'cover',
                             }}
                             onClick={() =>
-                              navigate(`/gallery/${row._id}`, { replace: true })
+                              navigate(`/gallery?id=${row._id}`, {
+                                replace: true,
+                              })
                             }
                           />
                         </StyledTableCell>
@@ -397,11 +399,15 @@ const Dashboard = () => {
                             alt={row.name}
                             style={{
                               height: '32px',
+                              width: '50px',
                               cursor: 'pointer',
                               borderRadius: '5px',
+                              fit: 'cover',
                             }}
                             onClick={() =>
-                              navigate(`/photo/${row._id}`, { replace: true })
+                              navigate(`/photo?id=${row._id}`, {
+                                replace: true,
+                              })
                             }
                           />
                         </StyledTableCell>

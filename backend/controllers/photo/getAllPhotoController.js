@@ -77,4 +77,31 @@ const getAllPhotoByItsUser = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { getAllPhoto, getAllPhotoByItsUser };
+const getAllPhotoByItsCategory = asyncHandler(async (req, res) => {
+  const categoryId = req.params.id;
+  const pageSize = 15;
+  const page = Number(req.query.pageNumber) || 1;
+
+  const count = await Photo.countDocuments({ categoryId });
+  const photos = await Photo.find({ categoryId })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
+    .lean();
+
+  if (!photos) {
+    return res.status(400).json({ message: 'No photos found' });
+  }
+  return res.status(200).json({
+    success: true,
+    message: `All photos fetched successfully`,
+    photos,
+    count,
+    numberOfPages: Math.ceil(count / pageSize),
+  });
+});
+
+module.exports = {
+  getAllPhoto,
+  getAllPhotoByItsUser,
+  getAllPhotoByItsCategory,
+};

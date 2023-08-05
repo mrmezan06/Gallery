@@ -14,6 +14,7 @@ import CreateModelPage from './page/Model/CreateModelPage';
 import VerifyRegistrationPage from './page/VerifyRegistration/Verify';
 import ResendPage from './page/ResendCode/ResendPage';
 import ProfilePage from './page/Profile/Profile';
+import GalleryPhotosPage from './page/Gallery/GalleryPhotosPage';
 
 const App = () => {
   return (
@@ -27,8 +28,9 @@ const App = () => {
           <Route path="resend-code" element={<ResendPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="photos" element={<GalleryPhotosPage />} />
           <Route path="gallery" element={<GalleryPage />} />
-          <Route path="/upload" element={<UploadForm />} />
+          <Route path="/photo/add" element={<UploadForm />} />
           <Route path="/category/add" element={<CreateModelPage />} />
         </Route>
       </Routes>
