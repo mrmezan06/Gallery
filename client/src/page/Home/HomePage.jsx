@@ -36,6 +36,9 @@ const HomePage = () => {
                       alt="Team 1"
                       width="320px"
                       height="320px"
+                      style={{
+                        objectFit: 'cover',
+                      }}
                     />
                   </div>
                   <div className="contentbx">

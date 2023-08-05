@@ -37,6 +37,8 @@ import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner';
 
 import { useGetUserProfileQuery } from '../../slice/api/userApiSlice';
+import Dashboard from './Dashboard/Dashboard';
+import './index.css';
 
 const modalStyle = {
   position: 'absolute',
@@ -85,233 +87,244 @@ const ProfilePage = () => {
   }, [isError, error]);
 
   return (
-    <Container
-      component="main"
-      maxWidth="md"
-      sx={{
-        border: '2px solid #e4e5e7',
-        borderRadius: '25px',
-        py: 2,
-        mt: 15,
-        backgroundColor: '#23242a',
-      }}
-    >
-      <CssBaseline />
-      <Box
+    <>
+      <Container
+        component="main"
+        maxWidth="md"
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
+          border: '2px solid #e4e5e7',
+          borderRadius: '25px',
+          py: 2,
+          mt: 10,
+          backgroundColor: '#23242a',
         }}
       >
-        <Typography variant="h1" sx={{ fontSize: 40, color: 'white' }}>
-          User Profile
-        </Typography>
-      </Box>
-      {isLoading ? (
-        <Spinner />
-      ) : (
+        <CssBaseline />
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'row',
+            justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <Box>
-            {data.userProfile?.avatar ? (
-              <Avatar
-                src={data.userProfile.avatar}
-                sx={{ width: 100, height: 100 }}
-              />
-            ) : (
-              <AccountCircleIcon sx={{ fontSize: '6rem' }} color="primary" />
-            )}
-          </Box>
-
-          <Grid container>
-            <Grid item md={12} sm={6} lg={12}>
-              <Stack direction="row" spacing={40}>
-                <Stack>
-                  <List>
-                    {/* provider */}
-                    <ListItem>
-                      <ListItemIcon>
-                        <LoginIcon fontSize="large" sx={{ color: 'white' }} />
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ color: 'white' }}
-                        primary={`Logged in With : ${capitalizeFirstLetter(
-                          data?.userProfile?.provider
-                        )}`}
-                      />
-                    </ListItem>
-                    {/* email */}
-                    <ListItem>
-                      <ListItemIcon>
-                        <AttachEmailIcon
-                          fontSize="large"
-                          sx={{ color: 'white' }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ color: 'white' }}
-                        primary={data?.userProfile?.email}
-                      />
-                    </ListItem>
-                    {/* name */}
-                    <ListItem>
-                      <ListItemIcon>
-                        <LabelImportantIcon
-                          sx={{ color: 'white' }}
-                          fontSize="large"
-                        />
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ color: 'white' }}
-                        primary={`Name: ${data?.userProfile?.name}`}
-                      />
-                    </ListItem>
-                    {/* username */}
-                    <ListItem>
-                      <ListItemIcon>
-                        <BadgeIcon sx={{ color: 'white' }} fontSize="large" />
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ color: 'white' }}
-                        primary={`Username: ${data?.userProfile?.username}`}
-                      />
-                    </ListItem>
-                  </List>
-                </Stack>
-                <Stack>
-                  <List>
-                    {/* provider */}
-                    <ListItem>
-                      <ListItemIcon>
-                        <BiCategory fontSize="32" color="white" />
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ color: 'white' }}
-                        primary={`Total Category: ${
-                          data?.userProfile?.categoryCount || 0
-                        }`}
-                      />
-                    </ListItem>
-                    {/* email */}
-                    <ListItem>
-                      <ListItemIcon>
-                        <BiSolidUserAccount fontSize="32px" color="white" />
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ color: 'white' }}
-                        primary={`Total Photos: ${
-                          data?.userProfile?.photoCount || 0
-                        }`}
-                      />
-                    </ListItem>
-                    {/* name */}
-                    <ListItem>
-                      <ListItemIcon>
-                        <PushPinIcon fontSize="large" sx={{ color: 'white' }} />
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ color: 'white' }}
-                        primary={`Lives in: ${data?.userProfile?.city || 'BD'}`}
-                      />
-                    </ListItem>
-                    {/* username */}
-                    <ListItem>
-                      <ListItemIcon>
-                        <BsFillClipboardCheckFill
-                          fontSize="32px"
-                          color="white"
-                        />
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ color: 'white' }}
-                        primary={`Last Login: ${
-                          data?.userProfile?.lastLogin || 'Never'
-                        }`}
-                      />
-                    </ListItem>
-                  </List>
-                </Stack>
-              </Stack>
-            </Grid>
-          </Grid>
-          <Grid container spacing={2}>
-            <Grid item md={4}>
-              <Button
-                sx={{ mt: 3, mb: 2, borderRadius: '25px' }}
-                fullWidth
-                variant="contained"
-                color="primary"
-                endIcon={<EditIcon />}
-                onClick={() => navigate('/edit-profile')}
-              >
-                <Typography variant="h5">Edit Profile</Typography>
-              </Button>
-            </Grid>
-            <Grid item md={4}>
-              <Button
-                sx={{ mt: 3, mb: 2, borderRadius: '25px' }}
-                fullWidth
-                variant="contained"
-                color="warning"
-                startIcon={<PersonRemoveAlt1Icon sx={{ color: 'white' }} />}
-                onClick={handleOpen}
-              >
-                <Typography variant="h5" sx={{ color: 'white' }}>
-                  Delete Account
-                </Typography>
-              </Button>
-            </Grid>
-            <Grid item md={4}>
-              <Button
-                sx={{ mt: 3, mb: 2, borderRadius: '25px' }}
-                fullWidth
-                variant="contained"
-                color="primary"
-                startIcon={<BiSolidDashboard />}
-                onClick={() => navigate('/dashboard')}
-              >
-                <Typography variant="h5">Dashboard</Typography>
-              </Button>
-            </Grid>
-          </Grid>
-
-          {/* modal */}
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+          <Typography
+            variant="h1"
+            sx={{ fontSize: 40, color: 'white', fontWeight: 900 }}
           >
-            <Box sx={modalStyle}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Are you sure you want to delete your account?
-              </Typography>
-              <Button
-                id="modal-modal-description"
-                sx={{ mt: 2 }}
-                fullWidth
-                variant="contained"
-                color="warning"
-                size="large"
-                endIcon={<DeleteForeverIcon sx={{ color: 'white' }} />}
-                onClick={deleteHandler}
-              >
-                <Typography variant="h5" sx={{ color: 'white' }}>
-                  Delete Account
-                </Typography>
-              </Button>
-            </Box>
-          </Modal>
+            User Profile
+          </Typography>
         </Box>
-      )}
-    </Container>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Box>
+              {data.userProfile?.avatar ? (
+                <Avatar
+                  src={data.userProfile.avatar}
+                  sx={{ width: 100, height: 100 }}
+                />
+              ) : (
+                <AccountCircleIcon sx={{ fontSize: '6rem' }} color="primary" />
+              )}
+            </Box>
+
+            <Grid container>
+              <Grid item md={12} sm={6} lg={12}>
+                <Stack direction="row" spacing={40}>
+                  <Stack>
+                    <List>
+                      {/* provider */}
+                      <ListItem>
+                        <ListItemIcon>
+                          <LoginIcon fontSize="large" sx={{ color: 'white' }} />
+                        </ListItemIcon>
+                        <ListItemText
+                          sx={{ color: 'white' }}
+                          primary={`Logged in With : ${capitalizeFirstLetter(
+                            data?.userProfile?.provider
+                          )}`}
+                        />
+                      </ListItem>
+                      {/* email */}
+                      <ListItem>
+                        <ListItemIcon>
+                          <AttachEmailIcon
+                            fontSize="large"
+                            sx={{ color: 'white' }}
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          sx={{ color: 'white' }}
+                          primary={data?.userProfile?.email}
+                        />
+                      </ListItem>
+                      {/* name */}
+                      <ListItem>
+                        <ListItemIcon>
+                          <LabelImportantIcon
+                            sx={{ color: 'white' }}
+                            fontSize="large"
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          sx={{ color: 'white' }}
+                          primary={`Name: ${data?.userProfile?.name}`}
+                        />
+                      </ListItem>
+                      {/* username */}
+                      <ListItem>
+                        <ListItemIcon>
+                          <BadgeIcon sx={{ color: 'white' }} fontSize="large" />
+                        </ListItemIcon>
+                        <ListItemText
+                          sx={{ color: 'white' }}
+                          primary={`Username: ${data?.userProfile?.username}`}
+                        />
+                      </ListItem>
+                    </List>
+                  </Stack>
+                  <Stack>
+                    <List>
+                      {/* provider */}
+                      <ListItem>
+                        <ListItemIcon>
+                          <BiCategory fontSize="32" color="white" />
+                        </ListItemIcon>
+                        <ListItemText
+                          sx={{ color: 'white' }}
+                          primary={`Total Category: ${
+                            data?.userProfile?.categoryCount || 0
+                          }`}
+                        />
+                      </ListItem>
+                      {/* email */}
+                      <ListItem>
+                        <ListItemIcon>
+                          <BiSolidUserAccount fontSize="32px" color="white" />
+                        </ListItemIcon>
+                        <ListItemText
+                          sx={{ color: 'white' }}
+                          primary={`Total Photos: ${
+                            data?.userProfile?.photoCount || 0
+                          }`}
+                        />
+                      </ListItem>
+                      {/* name */}
+                      <ListItem>
+                        <ListItemIcon>
+                          <PushPinIcon
+                            fontSize="large"
+                            sx={{ color: 'white' }}
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          sx={{ color: 'white' }}
+                          primary={`Lives in: ${
+                            data?.userProfile?.city || 'BD'
+                          }`}
+                        />
+                      </ListItem>
+                      {/* username */}
+                      <ListItem>
+                        <ListItemIcon>
+                          <BsFillClipboardCheckFill
+                            fontSize="32px"
+                            color="white"
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          sx={{ color: 'white' }}
+                          primary={`Last Login: ${
+                            data?.userProfile?.lastLogin || 'Never'
+                          }`}
+                        />
+                      </ListItem>
+                    </List>
+                  </Stack>
+                </Stack>
+              </Grid>
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item md={4}>
+                <Button
+                  sx={{ mt: 3, mb: 2, borderRadius: '25px' }}
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  endIcon={<EditIcon />}
+                  onClick={() => navigate('/edit-profile')}
+                >
+                  <Typography variant="h5">Edit Profile</Typography>
+                </Button>
+              </Grid>
+              <Grid item md={4}>
+                <Button
+                  sx={{ mt: 3, mb: 2, borderRadius: '25px' }}
+                  fullWidth
+                  variant="contained"
+                  color="warning"
+                  startIcon={<PersonRemoveAlt1Icon sx={{ color: 'white' }} />}
+                  onClick={handleOpen}
+                >
+                  <Typography variant="h5" sx={{ color: 'white' }}>
+                    Delete Account
+                  </Typography>
+                </Button>
+              </Grid>
+              <Grid item md={4}>
+                <Button
+                  sx={{ mt: 3, mb: 2, borderRadius: '25px' }}
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  startIcon={<BiSolidDashboard />}
+                  onClick={() => navigate('/dashboard')}
+                >
+                  <Typography variant="h5">Dashboard</Typography>
+                </Button>
+              </Grid>
+            </Grid>
+
+            {/* modal */}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Are you sure you want to delete your account?
+                </Typography>
+                <Button
+                  id="modal-modal-description"
+                  sx={{ mt: 2 }}
+                  fullWidth
+                  variant="contained"
+                  color="warning"
+                  size="large"
+                  endIcon={<DeleteForeverIcon sx={{ color: 'white' }} />}
+                  onClick={deleteHandler}
+                >
+                  <Typography variant="h5" sx={{ color: 'white' }}>
+                    Delete Account
+                  </Typography>
+                </Button>
+              </Box>
+            </Modal>
+          </Box>
+        )}
+      </Container>
+      <Dashboard />
+    </>
   );
 };
 

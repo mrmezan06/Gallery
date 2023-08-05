@@ -29,7 +29,7 @@ const App = () => {
           <Route path="profile" element={<ProfilePage />} />
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="/upload" element={<UploadForm />} />
-          <Route path="/create/model" element={<CreateModelPage />} />
+          <Route path="/category/add" element={<CreateModelPage />} />
         </Route>
       </Routes>
       <Footer />

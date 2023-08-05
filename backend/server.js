@@ -11,6 +11,7 @@ const authRoutes = require('./routes/authRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const userRoutes = require('./routes/userRoutes');
 const photoRoutes = require('./routes/photoRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 dotenv.config();
 
@@ -44,6 +45,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/photo', photoRoutes);
+app.use('/api/upload', uploadRoutes);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

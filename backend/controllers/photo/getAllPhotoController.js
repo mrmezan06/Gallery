@@ -8,6 +8,7 @@ const getAllPhoto = asyncHandler(async (req, res) => {
   const count = await Photo.countDocuments({});
 
   const photos = await Photo.find({})
+    .populate('categoryId', 'categoryName')
     .limit(pageSize)
     .skip(pageSize * (page - 1))
     .lean();
@@ -60,6 +61,7 @@ const getAllPhotoByItsUser = asyncHandler(async (req, res) => {
   const count = await Photo.countDocuments({ createdBy });
 
   const photos = await Photo.find({ createdBy })
+    .populate('categoryId', 'categoryName')
     .limit(pageSize)
     .skip(pageSize * (page - 1))
     .lean();

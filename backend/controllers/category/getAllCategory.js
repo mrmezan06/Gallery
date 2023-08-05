@@ -3,7 +3,14 @@ const Category = require('../../models/categoryModel');
 const User = require('../../models/userModel');
 
 const getAllCategory = asyncHandler(async (req, res) => {
-  const categories = await Category.find({}).exec();
+  const pageSize = 15;
+  const page = Number(req.query.pageNumber) || 1;
+  const count = await Category.countDocuments({});
+
+  const categories = await Category.find({})
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
+    .lean();
   if (!categories) {
     return res.status(400).json({ message: 'No categories found' });
   }
@@ -11,6 +18,8 @@ const getAllCategory = asyncHandler(async (req, res) => {
     success: true,
     message: 'All categories fetched successfully',
     categories,
+    count,
+    numberOfPages: Math.ceil(count / pageSize),
   });
 });
 
@@ -46,7 +55,14 @@ const getAllCategoryByItsUser = asyncHandler(async (req, res) => {
 
   const createdBy = existingUser._id;
 
-  const categories = await Category.find({ createdBy }).exec();
+  const pageSize = 15;
+  const page = Number(req.query.pageNumber) || 1;
+  const count = await Category.countDocuments({ createdBy });
+
+  const categories = await Category.find({ createdBy })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
+    .lean();
 
   if (!categories) {
     return res.status(400).json({ message: 'No categories found' });
@@ -55,6 +71,8 @@ const getAllCategoryByItsUser = asyncHandler(async (req, res) => {
     success: true,
     message: `All categories created by ${existingUser.username} fetched successfully`,
     categories,
+    count,
+    numberOfPages: Math.ceil(count / pageSize),
   });
 });
 
