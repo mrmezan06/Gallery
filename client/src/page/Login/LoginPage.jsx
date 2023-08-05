@@ -1,5 +1,5 @@
 import './style.css';
-import { useLoginUserMutation } from '../../slice/api/authAPISlice';
+import { useLoginUserMutation } from '../../slice/api/authApiSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';

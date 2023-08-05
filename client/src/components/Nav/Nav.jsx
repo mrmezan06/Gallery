@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { isExpired } from 'react-jwt';
 import { logout } from '../../slice/authSlice';
 import { toast } from 'react-toastify';
-import { useLogoutUserMutation } from '../../slice/api/authAPISlice';
+import { useLogoutUserMutation } from '../../slice/api/authApiSlice';
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);

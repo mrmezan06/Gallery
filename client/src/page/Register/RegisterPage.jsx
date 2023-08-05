@@ -5,7 +5,7 @@ import {
   strengthColor,
   strengthIndicator,
 } from '../../utils/password-strength';
-import { useRegisterUserMutation } from '../../slice/api/authAPISlice';
+import { useRegisterUserMutation } from '../../slice/api/authApiSlice';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {

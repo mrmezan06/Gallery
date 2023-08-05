@@ -1,5 +1,4 @@
-// import { baseUrl } from '../../app/baseUrl';
-import { baseApiSlice } from './baseAPISlice';
+import { baseApiSlice } from './baseApiSlice';
 import { logout } from '../authSlice';
 
 export const authApiSlice = baseApiSlice.injectEndpoints({

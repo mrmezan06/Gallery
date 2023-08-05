@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-import { useResendVerifyEmailMutation } from '../../slice/api/authAPISlice';
+import { useResendVerifyEmailMutation } from '../../slice/api/authApiSlice';
 
 import { useNavigate } from 'react-router-dom';
 

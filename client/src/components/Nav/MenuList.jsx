@@ -2,10 +2,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import './menuList.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { isExpired } from 'react-jwt';
-import { logout } from '../../slice/authSlice';
 import { toast } from 'react-toastify';
-import { useLogoutUserMutation } from '../../slice/api/authAPISlice';
 import { useEffect } from 'react';
+import { logout } from '../../slice/authSlice';
+import { useLogoutUserMutation } from '../../slice/api/authApiSlice.js';
 
 const MenuList = () => {
   const { user } = useSelector((state) => state.auth);
