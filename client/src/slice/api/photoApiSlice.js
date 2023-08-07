@@ -45,6 +45,7 @@ export const photosApiSlice = baseApiSlice.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'Photos', id: 'LIST' }],
     }),
+
     deleteByAdmin: builder.mutation({
       query: (id) => ({
         url: `/photo/deleteByAdmin/${id}`,

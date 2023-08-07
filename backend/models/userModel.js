@@ -60,12 +60,15 @@ const userSchema = new mongoose.Schema(
       required: true,
       default: 'email',
     },
+    city: String,
     googleID: String,
     avatar: String,
-    passwordChangedAt: Date,
-    uploadedFiles: {
-      type: [String],
+    lastLogin: {
+      type: Date,
+      default: Date.now(),
     },
+    passwordChangedAt: Date,
+
     roles: {
       type: [String],
       default: [USER],

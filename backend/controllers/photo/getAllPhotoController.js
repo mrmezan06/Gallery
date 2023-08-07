@@ -1,13 +1,14 @@
 const asyncHandler = require('express-async-handler');
-const Photo = require('../../models/photoModel');
 const User = require('../../models/userModel');
+const Photo = require('../../models/photoModel');
 
 const getAllPhoto = asyncHandler(async (req, res) => {
-  const pageSize = 15;
+  const pageSize = Number(req.query.pageSize) || 10;
   const page = Number(req.query.pageNumber) || 1;
   const count = await Photo.countDocuments({});
 
   const photos = await Photo.find({})
+    .sort({ name: 1 })
     .populate('categoryId', 'categoryName')
     .limit(pageSize)
     .skip(pageSize * (page - 1))
@@ -19,7 +20,6 @@ const getAllPhoto = asyncHandler(async (req, res) => {
     success: true,
     message: 'All photos fetched successfully',
     photos,
-    count,
     numberOfPages: Math.ceil(count / pageSize),
   });
 });
@@ -55,15 +55,10 @@ const getAllPhotoByItsUser = asyncHandler(async (req, res) => {
   }
 
   const createdBy = existingUser._id;
-
-  const pageSize = 15;
-  const page = Number(req.query.pageNumber) || 1;
   const count = await Photo.countDocuments({ createdBy });
 
   const photos = await Photo.find({ createdBy })
     .populate('categoryId', 'categoryName')
-    .limit(pageSize)
-    .skip(pageSize * (page - 1))
     .lean();
   if (!photos) {
     return res.status(400).json({ message: 'No photos found' });
@@ -73,7 +68,6 @@ const getAllPhotoByItsUser = asyncHandler(async (req, res) => {
     message: `All photos fetched successfully for user ${existingUser.username}`,
     photos,
     count,
-    numberOfPages: Math.ceil(count / pageSize),
   });
 });
 
@@ -84,6 +78,7 @@ const getAllPhotoByItsCategory = asyncHandler(async (req, res) => {
 
   const count = await Photo.countDocuments({ categoryId });
   const photos = await Photo.find({ categoryId })
+    .sort({ name: 1 })
     .limit(pageSize)
     .skip(pageSize * (page - 1))
     .lean();

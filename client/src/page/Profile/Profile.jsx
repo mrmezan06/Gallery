@@ -39,6 +39,7 @@ import Spinner from '../../components/Spinner';
 import { useGetUserProfileQuery } from '../../slice/api/userApiSlice';
 import Dashboard from './Dashboard/Dashboard';
 import './index.css';
+import moment from 'moment';
 
 const modalStyle = {
   position: 'absolute',
@@ -201,7 +202,7 @@ const ProfilePage = () => {
                         <ListItemText
                           sx={{ color: 'white' }}
                           primary={`Total Category: ${
-                            data?.userProfile?.categoryCount || 0
+                            data?.countCategories || 0
                           }`}
                         />
                       </ListItem>
@@ -212,9 +213,7 @@ const ProfilePage = () => {
                         </ListItemIcon>
                         <ListItemText
                           sx={{ color: 'white' }}
-                          primary={`Total Photos: ${
-                            data?.userProfile?.photoCount || 0
-                          }`}
+                          primary={`Total Photos: ${data?.countPhotos || 0}`}
                         />
                       </ListItem>
                       {/* name */}
@@ -242,9 +241,12 @@ const ProfilePage = () => {
                         </ListItemIcon>
                         <ListItemText
                           sx={{ color: 'white' }}
-                          primary={`Last Login: ${
-                            data?.userProfile?.lastLogin || 'Never'
-                          }`}
+                          primary={`Last Login:
+                           ${
+                             moment(data?.userProfile?.lastLogin).format(
+                               'DD-MM-YYYY hh:mm:ss A'
+                             ) || 'Never'
+                           }`}
                         />
                       </ListItem>
                     </List>

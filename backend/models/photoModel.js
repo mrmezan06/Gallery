@@ -9,13 +9,13 @@ const PhotoSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      validate: {
+      /*  validate: {
         validator: function (value) {
           return /^[a-zA-Z0-9-.,<>?:,_@#()&!+'"` ]{3,250}$/.test(value);
         },
         message:
           'Photo Name can only have Alphanumeric values. Some special characters allowed including @.()#&+-_"\'!,.:;?<>',
-      },
+      }, */
     },
     categoryId: {
       type: String,
@@ -25,6 +25,7 @@ const PhotoSchema = new mongoose.Schema(
     place: {
       type: String,
       required: true,
+      default: 'Unknown',
     },
     url: {
       type: String,

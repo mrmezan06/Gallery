@@ -4,17 +4,17 @@ import Spinner from '../../components/Spinner';
 import { useGetAllPhotosByItsCategoryMutation } from '../../slice/api/photoApiSlice';
 import { useEffect } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const GalleryPage = () => {
   const [getAllPhotosByItsCategory, { data, isError, isLoading }] =
     useGetAllPhotosByItsCategoryMutation();
 
+  const navigate = useNavigate();
+
   const location = useLocation();
   let id = location.search.split('=')[1];
-  // if (id === undefined) {
-  //   id = '';
-  // }
+
   useEffect(() => {
     getAllPhotosByItsCategory(id);
     if (isError) {
@@ -31,7 +31,12 @@ const GalleryPage = () => {
             data?.photos?.map((photo) => (
               <div className="card-g" key={photo._id}>
                 <div className="content">
-                  <div className="imgbx">
+                  <div
+                    className="imgbx"
+                    onClick={() => {
+                      navigate(`/photos/${photo._id}`);
+                    }}
+                  >
                     {/* show views on top right above the picture */}
                     <p className="views">
                       <i class="fa fa-eye" aria-hidden="true"></i> 24M

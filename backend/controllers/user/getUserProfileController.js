@@ -1,5 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const User = require('../../models/userModel');
+const Photo = require('../../models/photoModel');
+const Category = require('../../models/categoryModel');
 
 const getUserProfile = asyncHandler(async (req, res) => {
   const userId = req.user._id;
@@ -17,9 +19,14 @@ const getUserProfile = asyncHandler(async (req, res) => {
     });
   }
 
+  const countPhotos = await Photo.countDocuments({ createdBy: userId });
+  const countCategories = await Category.countDocuments({ createdBy: userId });
+
   res.status(200).json({
     success: true,
     userProfile,
+    countPhotos,
+    countCategories,
   });
 });
 

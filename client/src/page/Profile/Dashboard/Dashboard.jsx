@@ -405,7 +405,7 @@ const Dashboard = () => {
                               fit: 'cover',
                             }}
                             onClick={() =>
-                              navigate(`/photo?id=${row._id}`, {
+                              navigate(`/photos/${row._id}`, {
                                 replace: true,
                               })
                             }

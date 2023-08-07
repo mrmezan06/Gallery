@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 const Category = require('../../models/categoryModel');
 const jwt = require('jsonwebtoken');
 const User = require('../../models/userModel');
+const Photo = require('../../models/photoModel');
 
 const createCategory = asyncHandler(async (req, res) => {
   const { categoryName, posterPhotoURL, ...rest } = req.body;
@@ -66,9 +67,20 @@ const createCategory = asyncHandler(async (req, res) => {
   const createdCategory = await newCategory.save();
 
   if (createdCategory) {
+    //   create a new photo document
+    const newPhoto = new Photo({
+      name: categoryName,
+      categoryId: createdCategory._id,
+      url: posterPhotoURL,
+      createdBy,
+    });
+
+    const createdPhoto = await newPhoto.save();
+
     return res.status(201).json({
       message: 'New Category Created Successfully',
       category: createdCategory,
+      photo: createdPhoto,
     });
   }
   return res.status(500).json({ message: 'Error in creating category' });
