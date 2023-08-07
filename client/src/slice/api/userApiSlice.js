@@ -32,6 +32,14 @@ export const usersApiSlice = baseApiSlice.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'User', id: 'SINGLE_USER' }],
     }),
+    updateAvatar: builder.mutation({
+      query: (avatarData) => ({
+        url: `/user/avatar`,
+        method: 'PATCH',
+        body: avatarData,
+      }),
+      invalidatesTags: [{ type: 'User', id: 'SINGLE_USER' }],
+    }),
     /*
       deleteMyAccount: builder.mutation({
         query: () => ({
@@ -57,5 +65,8 @@ export const usersApiSlice = baseApiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetUserProfileQuery, useUpdateUserProfileMutation } =
-  usersApiSlice;
+export const {
+  useGetUserProfileQuery,
+  useUpdateUserProfileMutation,
+  useUpdateAvatarMutation,
+} = usersApiSlice;

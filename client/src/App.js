@@ -17,6 +17,7 @@ import ProfilePage from './page/Profile/Profile';
 import GalleryPhotosPage from './page/Gallery/GalleryPhotosPage';
 import SinglePhotoPage from './page/Photo/SinglePhotoPage';
 import UpdateProfilePage from './page/Profile/UpdateUser/UpdateProfile';
+import UploadAvatar from './page/Profile/Upload/UploadAvatar';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="edit-profile" element={<UpdateProfilePage />} />
+          <Route path="avatar-upload" element={<UploadAvatar />} />
           <Route path="photos" element={<GalleryPhotosPage />} />
           <Route path="/photos/:id" element={<SinglePhotoPage />} />
           <Route path="gallery" element={<GalleryPage />} />

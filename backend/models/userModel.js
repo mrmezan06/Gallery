@@ -43,16 +43,11 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       select: false,
-      validate: {
-        validator: function (value) {
-          return value.length >= 6;
-        },
-        message: `Password must be at least 6 characters long`,
-      },
-      /* validate: [
-          validator.isStrongPassword,
-          'Password must be at least 8 characters long, with at least 1 uppercase and lowercase letters and at least 1 symbol',
-        ], */
+      // validate: validator.isStrongPassword,
+      validate: [
+        validator.isStrongPassword,
+        'Password must be at least 8 characters long, with at least 1 uppercase and lowercase letters and at least 1 symbol',
+      ],
     },
     isEmailVerified: { type: Boolean, required: true, default: false },
     provider: {
@@ -62,7 +57,9 @@ const userSchema = new mongoose.Schema(
     },
     city: String,
     googleID: String,
+
     avatar: String,
+    publicId: String,
     lastLogin: {
       type: Date,
       default: Date.now(),

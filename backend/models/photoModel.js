@@ -32,6 +32,10 @@ const PhotoSchema = new mongoose.Schema(
       unique: true,
       required: true,
     },
+    publicId: {
+      type: String,
+      default: '',
+    },
     createdBy: {
       type: Schema.Types.ObjectId,
       required: true,

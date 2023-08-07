@@ -16,10 +16,11 @@ const cloudinaryUploader = async function uploadToCloudinary(localFilePath) {
     .upload(localFilePath, { folder: mainFolderName })
     .then((result) => {
       fs.unlinkSync(localFilePath);
-
+      // console.log(result);
       return {
         message: 'Success',
         url: result.url,
+        publicId: result.public_id,
       };
     })
     .catch((error) => {

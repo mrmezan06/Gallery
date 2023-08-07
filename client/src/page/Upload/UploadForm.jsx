@@ -30,6 +30,7 @@ const CreateModelPage = () => {
   const [name, setName] = useState('');
   const [place, setPlace] = useState('');
   const [image, setImage] = useState('');
+  const [publicId, setPublicId] = useState('');
   const [uploading, setUploading] = useState(false);
   const [category, setCategory] = useState('');
   const [categoryId, setCategoryId] = useState('');
@@ -59,6 +60,7 @@ const CreateModelPage = () => {
         config
       );
       setImage(data?.url);
+      setPublicId(data?.public_id);
       setUploading(false);
       console.log(data);
     } catch (error) {
@@ -72,6 +74,7 @@ const CreateModelPage = () => {
     const userData = {
       photoName: name,
       photoUrl: image,
+      publicId: publicId,
       place: place,
       categoryId: categoryId,
     };

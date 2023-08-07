@@ -27,6 +27,10 @@ const categorySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    publicId: {
+      type: String,
+      default: '',
+    },
     dateOfBirth: {
       type: String,
       required: true,

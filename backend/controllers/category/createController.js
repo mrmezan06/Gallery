@@ -5,7 +5,7 @@ const User = require('../../models/userModel');
 const Photo = require('../../models/photoModel');
 
 const createCategory = asyncHandler(async (req, res) => {
-  const { categoryName, posterPhotoURL, ...rest } = req.body;
+  const { categoryName, posterPhotoURL, publicId, ...rest } = req.body;
 
   if (!categoryName) {
     return res.status(400).json({ message: 'Category name is required' });
@@ -14,6 +14,7 @@ const createCategory = asyncHandler(async (req, res) => {
   if (!posterPhotoURL) {
     return res.status(400).json({ message: 'Poster photo URL is required' });
   }
+
   const cookies = req.cookies;
   if (!cookies?.jwt) {
     return res
@@ -61,6 +62,7 @@ const createCategory = asyncHandler(async (req, res) => {
     categoryName,
     posterPhotoURL,
     createdBy,
+    publicId,
     ...rest,
   });
 
@@ -72,6 +74,7 @@ const createCategory = asyncHandler(async (req, res) => {
       name: categoryName,
       categoryId: createdCategory._id,
       url: posterPhotoURL,
+      publicId,
       createdBy,
     });
 

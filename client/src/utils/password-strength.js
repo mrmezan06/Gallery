@@ -15,8 +15,7 @@ export const strengthColor = (count) => {
 
 export const strengthIndicator = (number) => {
   let strengths = 0;
-  if (number.length > 5) strengths += 2;
-  if (number.length > 7) strengths += 1;
+  if (number.length >= 7) strengths += 2;
   if (hasNumber(number)) strengths += 1;
   if (hasSpecial(number)) strengths += 1;
   if (hasMixed(number)) strengths += 1;

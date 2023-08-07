@@ -8,7 +8,7 @@ const SinglePhotoPage = () => {
   const [images, setImages] = useState([]);
 
   const location = useLocation();
-  console.log(location.pathname.split('/')[2]);
+  // console.log(location.pathname.split('/')[2]);
   const id = location.pathname.split('/')[2];
 
   const fetchImage = async (id) => {
@@ -17,7 +17,6 @@ const SinglePhotoPage = () => {
     );
 
     setImages(data?.photo.relatedPhotos);
-    console.log(data?.photo.relatedPhotos);
   };
 
   useEffect(() => {

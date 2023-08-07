@@ -28,7 +28,7 @@ const UpdateProfilePage = () => {
 
   const { data: profileData } = useGetUserProfileQuery();
 
-  const [updateUserProfile, { data, isLoading, isSuccess }] =
+  const [updateUserProfile, { data, isLoading, isSuccess, isError, error }] =
     useUpdateUserProfileMutation();
 
   const navigate = useNavigate();
@@ -46,7 +46,11 @@ const UpdateProfilePage = () => {
       const message = data?.message;
       toast.success(message);
     }
-  }, [data, isSuccess, navigate, profileData]);
+
+    if (isError || error) {
+      toast.error(error?.data?.message);
+    }
+  }, [data, isSuccess, navigate, profileData, isError, error]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -58,7 +62,11 @@ const UpdateProfilePage = () => {
       password,
       city,
     };
-    updateUserProfile(data);
+    try {
+      updateUserProfile(data);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -82,7 +90,7 @@ const UpdateProfilePage = () => {
             </div>
             <div className="inputBoxS">
               <input
-                type="text"
+                type="email"
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

@@ -7,7 +7,6 @@ import {
   CircularProgress,
   Container,
   CssBaseline,
-  Grid,
   styled,
   TextField,
   Typography,
@@ -15,27 +14,30 @@ import {
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Spinner from '../../components/Spinner';
-import { useCreateCategoryMutation } from '../../slice/api/categoryApiSlice';
+import Spinner from '../../../components/Spinner';
+
 import { toast } from 'react-toastify';
+
+import {
+  useUpdateAvatarMutation,
+  useGetUserProfileQuery,
+} from '../../../slice/api/userApiSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Input = styled('input')({
   display: 'none',
 });
 
-const CreateModelPage = () => {
+const UploadAvatar = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [name, setName] = useState('');
-  const [country, setCountry] = useState('');
-  const [image, setImage] = useState('');
   const [publicId, setPublicId] = useState('');
+
+  const { data: user } = useGetUserProfileQuery();
+
+  const [updateAvatar, { isSuccess, isError, error }] =
+    useUpdateAvatarMutation();
+  const [image, setImage] = useState('');
   const [uploading, setUploading] = useState(false);
-
-  const [bod, setBod] = useState('');
-
-  const [createCategory, { isSuccess, isError, error }] =
-    useCreateCategoryMutation();
-
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
@@ -49,57 +51,71 @@ const CreateModelPage = () => {
         },
       };
 
+      if (publicId) {
+        const { data: deleteData } = await axios.patch(
+          'http://localhost:5000/api/upload/delete',
+          { publicId }
+        );
+
+        if (!deleteData?.success) {
+          toast.error(deleteData?.message);
+        } else {
+        }
+      }
+
       const { data } = await axios.patch(
         'http://localhost:5000/api/upload',
         formData,
         config
       );
-      // console.log(data);
+      //   console.log(data);
       setImage(data?.url);
       setPublicId(data?.publicId);
       setUploading(false);
       console.log(data);
     } catch (error) {
       setUploading(false);
-      console.log(error);
+      toast.error(error.message);
     }
   };
   const submitHandler = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const userData = {
-      categoryName: name,
-      posterPhotoURL: image,
-      dateOfBirth: bod,
-      country: country,
-      publicId: publicId,
-    };
     try {
-      const created = await createCategory(userData);
-      if (created) {
-        toast.success('Category created successfully');
-        setName('');
-        setCountry('');
-        setImage('');
-        setBod('');
-      }
+      updateAvatar({ url: image, publicId });
     } catch (error) {
       toast.error(error.message);
     }
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // console.log(user);
+    if (user?.userProfile?.avatar) {
+      setImage(user?.userProfile?.avatar);
+      setPublicId(user?.userProfile?.publicId);
+      // console.log(user?.userProfile?.publicId);
+    }
+
     if (isSuccess) {
-      setIsLoading(false);
+      navigate('/profile');
+      toast.success('Updated avatar successfully');
     }
     if (isError) {
-      setIsLoading(false);
       toast.error(error.message);
     }
     if (error) {
       toast.error(error.message);
     }
-  }, [isSuccess, isError, error]);
+    setIsLoading(false);
+  }, [
+    isSuccess,
+    isError,
+    error,
+    navigate,
+    user?.userProfile?.avatar,
+    user?.userProfile?.publicId,
+  ]);
 
   return (
     <>
@@ -125,7 +141,7 @@ const CreateModelPage = () => {
           }}
         >
           <BrowserUpdatedIcon sx={{ fontSize: 70 }} />
-          <Typography variant="h4">Create Model</Typography>
+          <Typography variant="h4">Upload Photo</Typography>
         </Box>
         {/* <StyledDivider /> */}
 
@@ -144,51 +160,6 @@ const CreateModelPage = () => {
             autoComplete="off"
             onSubmit={submitHandler}
           >
-            <Grid container spacing={2}>
-              <Grid item md={6} lg={12}>
-                {/* Name */}
-                <TextField
-                  required
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  name="name"
-                  placeholder='e.g. "John Doe"'
-                  margin="normal"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Grid>
-
-              <Grid item md={6} lg={6}>
-                {/* Country */}
-                <TextField
-                  fullWidth
-                  id="country"
-                  label="Country"
-                  name="country"
-                  margin="normal"
-                  placeholder='e.g. "USA"'
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                />
-              </Grid>
-
-              <Grid item md={6} lg={6}>
-                {/* Country */}
-                <TextField
-                  fullWidth
-                  id="dob"
-                  label="Date of Birth"
-                  name="dob"
-                  margin="normal"
-                  placeholder="dd-mm-yyyy"
-                  value={bod}
-                  onChange={(e) => setBod(e.target.value)}
-                />
-              </Grid>
-            </Grid>
-
             {/* avatar logo */}
             <TextField
               fullWidth
@@ -228,10 +199,10 @@ const CreateModelPage = () => {
               fullWidth
               variant="contained"
               color="primary"
-              size="large"
+              size="medium"
               endIcon={<CheckIcon />}
             >
-              <Typography variant="h5">Create</Typography>
+              <Typography variant="h5">Upload</Typography>
             </Button>
           </Box>
         )}
@@ -240,4 +211,4 @@ const CreateModelPage = () => {
   );
 };
 
-export default CreateModelPage;
+export default UploadAvatar;

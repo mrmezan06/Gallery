@@ -7,8 +7,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import {
   BiSolidUserAccount,
   BiCategory,
-  BiSolidDashboard,
+
 } from 'react-icons/bi';
+import { FcStackOfPhotos } from 'react-icons/fc';
 
 import { BsFillClipboardCheckFill } from 'react-icons/bs';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
@@ -264,7 +265,7 @@ const ProfilePage = () => {
                   endIcon={<EditIcon />}
                   onClick={() => navigate('/edit-profile')}
                 >
-                  <Typography variant="h5">Edit Profile</Typography>
+                  <Typography variant="h5">Update Profile</Typography>
                 </Button>
               </Grid>
               <Grid item md={4}>
@@ -287,10 +288,10 @@ const ProfilePage = () => {
                   fullWidth
                   variant="contained"
                   color="primary"
-                  startIcon={<BiSolidDashboard />}
-                  onClick={() => navigate('/dashboard')}
+                  startIcon={<FcStackOfPhotos />}
+                  onClick={() => navigate('/avatar-upload')}
                 >
-                  <Typography variant="h5">Dashboard</Typography>
+                  <Typography variant="h5">Upload Avatar</Typography>
                 </Button>
               </Grid>
             </Grid>

@@ -16,6 +16,7 @@ const RegisterPage = () => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [show, setShow] = useState(false);
 
   const changePassword = (value) => {
     const temp = strengthIndicator(value);
@@ -90,7 +91,7 @@ const RegisterPage = () => {
             </div>
             <div className="inputBoxS">
               <input
-                type="password"
+                type={show ? 'text' : 'password'}
                 name="password"
                 autocomplete="new-password"
                 value={password}
@@ -114,13 +115,14 @@ const RegisterPage = () => {
                   backgroundColor: level?.color,
                   color: 'white',
                 }}
+                onClick={() => setShow(!show)}
               >
                 {level?.label}
               </div>
             )}
             <div className="inputBoxS">
               <input
-                type="password"
+                type={show ? 'text' : 'password'}
                 name="confirmPassword"
                 value={confirmPassword}
                 autocomplete="new-password"
@@ -141,7 +143,9 @@ const RegisterPage = () => {
                     password === confirmPassword ? 'green' : 'red',
                   color: 'white',
                   textAlign: 'center',
+                  cursor: 'pointer',
                 }}
+                onClick={() => setShow(!show)}
               >
                 {password === confirmPassword
                   ? 'Password Matched'

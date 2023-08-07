@@ -5,7 +5,7 @@ const User = require('../../models/userModel');
 const Photo = require('../../models/photoModel');
 
 const createPhoto = asyncHandler(async (req, res) => {
-  const { photoName, categoryId, photoUrl, place } = req.body;
+  const { photoName, categoryId, photoUrl, publicId, place } = req.body;
 
   if (!photoName) {
     return res.status(400).json({ message: 'Category name is required' });
@@ -71,6 +71,7 @@ const createPhoto = asyncHandler(async (req, res) => {
   const newPhoto = new Photo({
     name: photoName,
     url: photoUrl,
+    publicId,
     place,
     categoryId,
     createdBy,
