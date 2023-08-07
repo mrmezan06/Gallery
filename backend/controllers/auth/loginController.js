@@ -7,15 +7,19 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!username || !password) {
     return res.status(400).json({
-      message: 'An username and password are required',
+      message: 'An username/email and password are required',
     });
   }
 
-  const existingUser = await User.findOne({ username }).select('+password');
+  let existingUser = await User.findOne({ username }).select('+password');
+
+  if (!existingUser) {
+    existingUser = await User.findOne({ email: username }).select('+password');
+  }
 
   if (!existingUser || !(await existingUser.comparePassword(password))) {
     return res.status(401).json({
-      message: 'Incorrect username or password',
+      message: 'Incorrect username/email or password',
     });
   }
 
@@ -89,6 +93,10 @@ const loginUser = asyncHandler(async (req, res) => {
       process.env.JWT_ACCESS_SECRET_KEY,
       { expiresIn: '1d' }
     );
+
+    // update the user's last login date
+    existingUser.lastLogin = Date.now();
+    await existingUser.save();
 
     res.status(200).json({
       success: true,
