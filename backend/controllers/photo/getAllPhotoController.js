@@ -73,7 +73,7 @@ const getAllPhotoByItsUser = asyncHandler(async (req, res) => {
 
 const getAllPhotoByItsCategory = asyncHandler(async (req, res) => {
   const categoryId = req.params.id;
-  const pageSize = 15;
+  const pageSize = req.query.pageSize || 10;
   const page = Number(req.query.pageNumber) || 1;
 
   const count = await Photo.countDocuments({ categoryId });

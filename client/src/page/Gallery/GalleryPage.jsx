@@ -1,34 +1,55 @@
 import './style.css';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner';
-import { useGetAllPhotosByItsCategoryMutation } from '../../slice/api/photoApiSlice';
-import { useEffect } from 'react';
+
+import { useEffect, useState } from 'react';
+import { Box, Pagination } from '@mui/material';
 
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const GalleryPage = () => {
-  const [getAllPhotosByItsCategory, { data, isError, isLoading }] =
-    useGetAllPhotosByItsCategoryMutation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [photos, setPhotos] = useState([]);
+  const [pageSize, setPageSize] = useState(1);
+  const [pages, setPages] = useState(1);
+  const itemsPerPage = 10;
 
   const navigate = useNavigate();
+
+  const fetchPhotos = async (pages, id) => {
+    setIsLoading(true);
+    const { data } = await axios.get(
+      `http://localhost:5000/api/photo/get/${id}?pageNumber=${pages}&pageSize=${itemsPerPage}`
+    );
+    try {
+      // console.log(data);
+      setPhotos(data?.photos);
+      setPageSize(data?.numberOfPages);
+    } catch (error) {
+      toast.error(error.message);
+    }
+    setIsLoading(false);
+  };
 
   const location = useLocation();
   let id = location.search.split('=')[1];
 
+  const handlePageChange = (event, page) => {
+    setPages(page);
+  };
+
   useEffect(() => {
-    getAllPhotosByItsCategory(id);
-    if (isError) {
-      toast.error('Something went wrong! Please try again.');
-    }
-  }, [isError, id, getAllPhotosByItsCategory]);
+    fetchPhotos(pages, id);
+  }, [id, pages]);
 
   return (
     <>
       <section className="g-body">
         <div className="container">
           {isLoading && <Spinner />}
-          {data &&
-            data?.photos?.map((photo) => (
+          {photos.length !== 0 &&
+            photos?.map((photo) => (
               <div className="card-g" key={photo._id}>
                 <div className="content">
                   <div
@@ -63,6 +84,20 @@ const GalleryPage = () => {
             ))}
         </div>
       </section>
+      <Box
+        justifyContent="center"
+        display="flex"
+        alignItems="center"
+        sx={{ margin: '20px 0px' }}
+      >
+        {/* Paginate */}
+        <Pagination
+          count={pageSize}
+          color={'primary'}
+          sx={{ textAlign: 'center' }}
+          onChange={handlePageChange}
+        />
+      </Box>
     </>
   );
 };

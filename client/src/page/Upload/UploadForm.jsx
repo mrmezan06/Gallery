@@ -82,8 +82,6 @@ const CreateModelPage = () => {
       const created = await createPhoto(userData);
       if (created) {
         toast.success('Image uploaded successfully');
-        setName('');
-        setPlace('');
         setImage('');
       }
     } catch (error) {

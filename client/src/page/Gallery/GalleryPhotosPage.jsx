@@ -11,7 +11,7 @@ const GalleryPhotosPage = () => {
   const [photos, setPhotos] = useState([]);
   const [pageSize, setPageSize] = useState(1);
   const [pages, setPages] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 15;
 
   const navigate = useNavigate();
 

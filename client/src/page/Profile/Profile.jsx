@@ -70,6 +70,7 @@ const ProfilePage = () => {
 
   const deleteHandler = async (e) => {
     e.preventDefault();
+    toast.info('Deletion is not available at the moment.');
 
     /* try {
       await deleteMyAccount().unwrap();

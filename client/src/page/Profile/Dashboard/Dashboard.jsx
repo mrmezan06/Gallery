@@ -89,7 +89,16 @@ const Dashboard = () => {
     setPage(0);
   };
 
-  const deleteHandler = async (id) => {};
+  const deleteHandler = async (id) => {
+    toast.error('Delete is not available now!');
+  };
+  const updateHandler = async (id) => {
+    toast.error('Update is not available now!');
+  };
+
+  const deletePhotoHandler = async (id) => {
+    toast.error('Delete is not available now!');
+  };
 
   useEffect(() => {
     if (isError) {
@@ -236,7 +245,7 @@ const Dashboard = () => {
                               sx={{
                                 cursor: 'pointer',
                               }}
-                              onClick={() => deleteHandler(row._id)}
+                              onClick={() => updateHandler(row._id)}
                             />
                           </Box>
                         </StyledTableCell>
@@ -423,7 +432,7 @@ const Dashboard = () => {
                               sx={{
                                 cursor: 'pointer',
                               }}
-                              onClick={() => deleteHandler(photoRows._id)}
+                              onClick={() => deletePhotoHandler(photoRows._id)}
                             />
                           </Box>
                         </StyledTableCell>
