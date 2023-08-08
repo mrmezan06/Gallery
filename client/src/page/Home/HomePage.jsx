@@ -25,6 +25,7 @@ const HomePage = () => {
   };
 
   const fetchCategories = async (pages) => {
+    // TODO: change the url
     const { data } = await axios.get(
       `http://localhost:5000/api/category/all?pageNumber=${pages}&pageSize=${itemsPerPage}`
     );

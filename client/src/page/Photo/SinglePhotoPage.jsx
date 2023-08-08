@@ -12,6 +12,7 @@ const SinglePhotoPage = () => {
   const id = location.pathname.split('/')[2];
 
   const fetchImage = async (id) => {
+    // TODO: change the url
     const { data } = await axios.get(
       `http://localhost:5000/api/photo/single/${id}`
     );

@@ -5,6 +5,7 @@ const sendEmail = require('../../utils/sendEmail');
 
 const randomBytes = require('crypto').randomBytes;
 
+// TODO: Add a frontend route for this
 const domainClient = process.env.CLIENT_DOMAIN;
 
 const resetPassworRequest = asyncHandler(async (req, res) => {

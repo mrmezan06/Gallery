@@ -52,6 +52,7 @@ const UploadAvatar = () => {
       };
 
       if (publicId) {
+        // TODO: change the url
         const { data: deleteData } = await axios.patch(
           'http://localhost:5000/api/upload/delete',
           { publicId }
@@ -62,7 +63,7 @@ const UploadAvatar = () => {
         } else {
         }
       }
-
+      // TODO: change the url
       const { data } = await axios.patch(
         'http://localhost:5000/api/upload',
         formData,

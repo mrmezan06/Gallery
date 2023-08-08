@@ -5,6 +5,8 @@ const sendEmail = require('../../utils/sendEmail');
 
 const randomBytes = require('crypto').randomBytes;
 
+// TODO: Add a frontend route for this
+
 const ClientURL = process.env.CLIENT_DOMAIN;
 
 const registerUser = asyncHandler(async (req, res) => {

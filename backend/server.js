@@ -31,6 +31,7 @@ if (process.env.NODE_ENV === 'Development') {
 app.use(express.json());
 app.use(cookieParser());
 app.use(
+  // TODO: change origin to frontend url
   cors({
     origin: 'http://localhost:3000',
     credentials: true,

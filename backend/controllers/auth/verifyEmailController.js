@@ -3,6 +3,7 @@ const User = require('../../models/userModel');
 const Token = require('../../models/tokenModel');
 const sendEmail = require('../../utils/sendEmail');
 
+// TODO: Add a frontend route for this
 const ClientURL = process.env.CLIENT_DOMAIN;
 
 const verifyUserEmail = asyncHandler(async (req, res) => {

@@ -53,7 +53,7 @@ const CreateModelPage = () => {
           'Content-Type': 'multipart/form-data',
         },
       };
-
+      // TODO: change the url
       const { data } = await axios.patch(
         'http://localhost:5000/api/upload',
         formData,

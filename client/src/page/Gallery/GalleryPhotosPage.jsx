@@ -24,6 +24,7 @@ const GalleryPhotosPage = () => {
   };
 
   const fetchPhotos = async (pages) => {
+    // TODO: change the url
     const { data } = await axios.get(
       `http://localhost:5000/api/photo/all?pageNumber=${pages}&pageSize=${itemsPerPage}`
     );
